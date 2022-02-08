@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function Animal(name){
+            this.name = name;
+            this.age = 20
+            this.run = () =>{
+                console.log("it can run")
+            }
+        }
+        Animal.prototype.eat = function(){
+            console.log("it can eat")
+        }
+        Animal.prototype.color = "red";
+
+        let animal = new Animal("animal");
+        console.log(animal)
+
+        //原型链继承
+        function Dog(){
+        }
+        Dog.prototype = new Animal();
+        let dog = new Dog("旺财")
+        console.log(dog)
+        console.log(dog.color)
+       
+        //构造函数继承
+        //缺点:不能继承父类原型上的属性和方法
+        function Cat(name){
+            Animal.call(this,name)
+        }
+        
+        let cat = new Cat("miaomiao");
+        console.log(cat)
+
+        //组合继承
+        function Rabbit(name){
+            Animal.call(this,name)
+        }
+        Rabbit.prototype = new Animal();
+        let rabbit = new Rabbit();
+        console.log(rabbit)
+    </script>
+</body>
+</html>

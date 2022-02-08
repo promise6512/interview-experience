@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      Function.prototype.call2 = function (context, ...rest) {
+        if (context === null || context === undefined) {
+          context = window;
+        } else {
+          context = Object(context);
+        }
+        context.fn = this;
+        context.fn(...rest);
+        delete context.fn;
+      };
+
+      var value = "window";
+      let obj = {
+        value: "obj",
+      };
+      function bar(name, age) {
+        console.log(this.value, this);
+        console.log(name, age);
+        console.log("@@@@");
+      }
+     /*  bar.call(obj);
+      bar.call(1);
+      bar.call2(obj, "zy", 3);
+      bar.call2(1, "zy", 3); */
+
+
+      Function.prototype.apply2 = function(context, rest) {
+        if (context === undefined || context === null) {
+          context = window
+        } else {
+          context = Object(context)
+        }
+        context.fn = this;
+        context.fn(...rest);
+        delete context.fn;
+      }
+      bar.apply2(obj, ["zy", 3]);
+      bar.apply2(1, ["zy", 3]);
+      bar.apply2(obj, ["zy", 3]);
+      bar.apply2(1, ["zy", 3]);
+    </script>
+  </body>
+</html>

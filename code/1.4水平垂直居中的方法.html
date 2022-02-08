@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box1{
+            height: 500px;
+            width:500px;
+            background-color: #bfa;
+            position: relative;
+            /* 方法三 弹性盒 */
+            
+          /*   display: flex;
+            align-items: center;
+            justify-content:center;  */
+           
+        }
+        .box2{
+            height: 100px;
+            width: 100px;
+            background-color: orange;
+           /*  
+            方法一.借助定位于变形
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%,-50%); */
+           /*  
+            方法二
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            position: absolute;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: auto;
+            margin-bottom: auto; */
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="box1">
+        <div class="box2"></div>
+    </div>
+</body>
+</html>

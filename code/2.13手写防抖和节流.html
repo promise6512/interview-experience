@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button id="debounce">防抖</button>
+    <br />
+    <button id="throttle">节流</button>
+    <script>
+      //短时间多次触发事件时, 只有最后次生效
+      function debounce(func, duration) {
+        let timer = null;
+        return function () {
+         // let args = arguments;
+          if (timer) {
+            clearTimeout(timer);
+          }
+          timer = setTimeout(() => {
+            func.apply(this, arguments);
+          }, duration);
+        };
+      }
+      //短时间多次触发事件时, 只有第一次生效
+      const throttle = (fun, wait) => {
+        let timer = null;
+        return function () {
+         // let args = arguments;
+          if (!timer) {
+            timer = setTimeout(() => {
+              fun.apply(this, arguments);
+              timer = null;
+            }, wait);
+          }
+        };
+      };
+      const deb = document.getElementById("debounce");
+      const thr = document.getElementById("throttle");
+      const fun = debounce(function (e) {
+        console.log(this);
+        console.log("debounce", e);
+      }, 1000);
+
+      const fun1 = throttle(function (e) {
+        console.log("throttle", this, e);
+      }, 1000);
+      deb.onclick = fun;
+      thr.onclick = fun1;
+    </script>
+  </body>
+</html>

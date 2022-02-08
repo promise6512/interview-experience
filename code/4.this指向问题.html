@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var obj = {
+            value: "obj",
+            //this执行全局
+            fn: function () {
+                console.log(this.value)
+            }
+
+            /*  
+            此处不能用箭头函数改变this指向
+             fn = () => {
+                 console.log(this.value)
+             } */
+        }
+        var fn = obj.fn;
+        let self = obj
+        fn.bind(self)()  //obj
+        fn.call(obj)   //obj
+        fn.apply(obj)  //obj
+        fn()  //undefined
+        fn = fn.bind(obj)
+        fn()   //obj
+    </script>
+</body>
+
+</html>

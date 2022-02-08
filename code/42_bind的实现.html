@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /* Function.prototype.bind2 = function (context, ...rest) {
+        let self = this;
+        return function (...args) {
+          this.apply(context, [...context, ...args]);
+        };
+      };
+      var foo = {
+        value: 1,
+      };
+
+      function bar2(name, age) {
+        console.log(this.value);
+        console.log(name);
+        console.log(age);
+      }
+
+      var bindFoo = bar2.bind(foo, "daisy");
+      bindFoo("18"); */
+      // 1
+      // daisy
+      // 18
+
+      Function.prototype.bind3 = function (context, ...rest) {
+        if (typeof this !== "function") throw new Error("只能给函数绑定bind");
+        let self = this;
+        let fbind = function (...args) {
+          return self.apply(this instanceof fbind ? this : context, [
+            ...rest,
+            ...args,
+          ]);
+        };
+        fbind.prototype = this.prototype;
+        return fbind;
+      };
+      var value = 2;
+
+      var foo = {
+        value: 1,
+      };
+
+      function bar(name, age) {
+        this.habit = "shopping";
+        console.log(this.value);
+        console.log(name);
+        console.log(age);
+      }
+
+      bar.prototype.friend = "kevin";
+
+      var bindFoo = bar.bind(foo, "daisy");
+
+      var obj = new bindFoo("18");
+      // undefined
+      // daisy
+      // 18
+      console.log(obj.habit);
+      console.log(obj.friend);
+      // shopping
+      // kevin
+    </script>
+  </body>
+</html>

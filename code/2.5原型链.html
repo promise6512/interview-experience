@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+       function Foo(){
+
+       }
+
+       var f1 = new Foo();
+       var o1 = new Object();
+       console.log(f1.__proto__ == Foo.prototype) //true
+       console.log(o1.__proto__ == Object.prototype) //true
+       console.log(Foo.__proto__.__proto__ == Object.prototype) //true
+     //  console.log(Foo.__prote__.__prote__ == Object.prototype)  //
+       console.log(Function.__proto__.__proto__ == Object.prototype)
+
+    </script>
+</body>
+</html>
